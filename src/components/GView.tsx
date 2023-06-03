@@ -1,5 +1,6 @@
 import { Box, Container, Grid, Slider, Switch, Text } from "@mantine/core";
 import { useState } from "react";
+import AppCard from "./AppCard";
 
 export default function GView() {
   // const [endValue, setEndValue] = useState(50);
@@ -63,6 +64,7 @@ export default function GView() {
               key={inv.id}
               span={spanning}
             >
+              <AppCard/>
               <div className=" bg-blue-300">{inv.id}</div>
             </Grid.Col>
           ))}

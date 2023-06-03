@@ -8,6 +8,7 @@ import { BsFillGridFill, BsTable } from "react-icons/bs";
 import { useToggle } from "@mantine/hooks";
 import TView from "@/components/TView";
 import GView from "@/components/GView";
+import AppAccess from "@/components/AppAccess";
 
 // enum AvailableViews {
 //   grd = 0,
@@ -63,9 +64,9 @@ const Home: NextPage = () => {
             <Text component="h1" className="text-center text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-700 to-black">D-Invoices </Text>
             <Text component="h3" className="text-center text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-700 to-black">Invoice Manager 
     </Text>
-
             <Text component="h6" className="m-0 text-center text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-700 to-black">For a better and more convenient ERP </Text>
         </Container>
+<AppAccess/>
 
         <Container className="">{toggledVal === "tbl" ? <TView /> : <GView />}</Container>
       </MantineProvider>

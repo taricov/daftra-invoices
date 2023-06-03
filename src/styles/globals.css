@@ -6,3 +6,14 @@ body{
   @apply bg-gradient-to-r from-violet-600 to-indigo-600 ;
 
 }
+
+.app-btn{
+  @apply text-white !bg-violet-800 !bg-opacity-50 hover:!bg-opacity-30 transition-all duration-300 font-medium rounded
+}
+.app-btn-light{
+  @apply text-white !bg-violet-800 !bg-opacity-0 hover:!bg-opacity-30 transition-all duration-300 font-medium rounded
+}
+
+.app-grad{
+@apply bg-gradient-to-r from-violet-900 to-indigo-600
+}
