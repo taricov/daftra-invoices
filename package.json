@@ -1,6 +1,7 @@
 {
-  "name": "daftra-invoices",
-  "version": "0.1.0",
+  "name": "d-invoices",
+  "version": "1.0.0",
+  "description": "D-invoices is a free and open source invoice manager for a better and more convenient way for Daftra ERP users to manage their business.",
   "private": true,
   "scripts": {
     "build": "next build",

@@ -1,8 +1,13 @@
 import { Box, Container, Grid, Slider, Switch, Text } from "@mantine/core";
 import { useState } from "react";
+import { useDisclosure } from '@mantine/hooks';
+import { Drawer, Group, Button } from '@mantine/core';
+
 import AppCard from "./AppCard";
 
 export default function GView() {
+  const [opened, { open, close }] = useDisclosure(false);
+
   // const [endValue, setEndValue] = useState(50);
   const [gutter, setGutter] = useState<number>(50);
   const [padding, setPadding] = useState<number>(10);
@@ -26,7 +31,8 @@ export default function GView() {
   ];
   return (
     <>
-      <Box maw={400} mx="auto" className="my-10">
+     <Drawer title="Change grid styles" position="bottom" size={"200px"} opened={opened} onClose={close} withCloseButton={false}>
+     <Box maw={400} mx="auto" className="my-10">
         <Text mt="md" size="sm">
           Gutter: <b>{gutter}</b>
         </Text>
@@ -55,17 +61,23 @@ export default function GView() {
         </Text>
         <Slider labelAlwaysOn value={padding} onChange={setPadding} max={20} />
       </Box>
+      </Drawer>
+
+      <Group position="center">
+        <Button onClick={open}>Open Drawer</Button>
+      </Group>
+      
 
       <Container>
         <Grid grow={isGrow} gutter={gutter}>
           {invs.map((inv) => (
             <Grid.Col
               className={`p-[${padding}px]`}
-              key={inv.id}
+              key={Math.random()*1000}
               span={spanning}
             >
-              <AppCard/>
-              <div className=" bg-blue-300">{inv.id}</div>
+              <AppCard p={padding}/>
+              {/* <div className=" bg-blue-300">{inv.id}</div> */}
             </Grid.Col>
           ))}
         </Grid>
