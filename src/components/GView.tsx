@@ -31,7 +31,7 @@ export default function GView() {
   ];
   return (
     <>
-     <Drawer title="Change grid styles" position="bottom" size={"200px"} opened={opened} onClose={close} withCloseButton={false}>
+     <Drawer classNames={{body: "app-grad"}} title="Change grid styles" position="bottom" size={"200px"} opened={opened} onClose={close} withCloseButton={false}>
      <Box maw={400} mx="auto" className="my-10">
         <Text mt="md" size="sm">
           Gutter: <b>{gutter}</b>
