@@ -5,7 +5,7 @@ import { useDisclosure } from '@mantine/hooks';
 import { Drawer, Group, Button } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import { Switch } from '@mantine/core';
-import { booleanMap } from '@/utils/types';
+import { booleanMap } from '@/types/types';
 
 export default function TStyles() {
   const [opened, { open, close }] = useDisclosure(false);

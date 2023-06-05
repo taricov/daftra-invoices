@@ -1,15 +1,40 @@
-/* eslint-disable @typescript-eslint/no-inferrable-types */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-export default function AppCard({...props}) {
+/* eslint-disable @typescript-eslint/no-inferrable-types */
+import { fetchInvoices, invQuery } from '@/utils/data';
+import { useQuery } from '@tanstack/react-query';
+import { useEffect } from 'react';
 
-    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-    const pad:string = `p-[${props.p}px]` 
+const StatusColors = {
+    paid: "bg-green-500",
+    unpaid: "bg-red-500",
+    "partially-paid": "bg-orange-500",
+}
+export default function AppCard({...props}) {
+    // const [inv, setInv] = useState<any>(null)
+
+    const invQuery = useQuery({
+        queryKey: ['invoices'],
+        queryFn: fetchInvoices
+        })
+        const {
+          data,
+          isLoading,
+          isFetching,
+          error,
+        } = invQuery
+useEffect(() => {
+      console.log(data)
+
+    },[])
+    //   console.log(data)
+
+    // const pad:string = `p-[${props.p}px]` 
     return (
         <>
         		{/* <div className="text-gray-600 my-3 text-center"><i className="fas fa-ellipsis-v"></i></div> */}
-
-<div className={`bg-white shadow-xl rounded-lg overflow-hidden ${pad}`}>
-    <div className="bg-cover bg-center h-16 p-4 flex justify-end items-center" style={{backgroundImage: "url(https://content.api.news/v3/images/bin/11990db1d540d5c13ea8ca3e01f2083c)"}}>
+                {/* ${StatusColors[inv[]]} */}
+<div className={`bg-white shadow-xl rounded-lg overflow-hidden ${'pad'}`}>
+    <div className={` bg-cover bg-center h-16 p-4 flex justify-end items-center`}>
         <p className="uppercase tracking-widest text-sm text-white bg-black py-1 px-2 rounded opacity-75 shadow-lg">DFW <span className="tracking-normal"></span> SEA</p>
     </div>
 
@@ -24,12 +49,12 @@ export default function AppCard({...props}) {
 </div>
 <div className="text-gray-500 hover:text-gray-300 cursor-pointer">
 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
 </svg>
 </div>
 <div className="text-gray-500 hover:text-gray-300 cursor-pointer">
 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
+<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
 </svg>
 </div>
 </div>

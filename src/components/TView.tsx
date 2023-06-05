@@ -8,7 +8,7 @@ import {
   type MRT_SortingState,
   type MRT_Virtualizer,
 } from 'mantine-react-table';
-import type { booleanMap} from "@/utils/types"
+import type { booleanMap} from "@/types/types"
 // import { makeData, Person } from './makeData';
 
 import { faker } from '@faker-js/faker';
