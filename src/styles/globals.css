@@ -17,3 +17,8 @@ body{
 .app-grad{
 @apply bg-gradient-to-r from-violet-900 to-indigo-600
 }
+
+.ff{
+  text-shadow: 4px -6px 1px #000;
+
+}
