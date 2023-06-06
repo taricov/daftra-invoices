@@ -10,6 +10,8 @@ import TView from "@/components/TView";
 import GView from "@/components/GView";
 // import AppAccess from "@/components/AppAccess";
 import AppTabs from "@/components/AppTabs";
+import Link from "next/link";
+import { Navbar } from "@/components/Navbar";
 
 // enum AvailableViews {
 //   grd = 0,
@@ -22,9 +24,11 @@ const Home: NextPage = () => {
   return (
     <>
       <MantineProvider>
-        <AppTabs/>
-        
-        <Container className="text-center mt-10 bg-violet-200/10 rounded-lg py-14">
+        <div className="p-1">
+   <Navbar/>
+        </div>
+
+        <Container className="my-10 text-center bg-violet-200/10 rounded-lg py-14">
         <Badge className="bg-gradient-to-r from-violet-900/60 to-black/50 via-slate-300 text-center text-transparent via- bg-clip-text relative before:content-[''] before:absolute before:top-0 before:left-0 before:rounded-full py-1 px-4 before:bg-indigo-900 before:bg-opacity-10 before:w-full before:h-full">
           Free and Open-Source 
           </Badge>
@@ -32,11 +36,15 @@ const Home: NextPage = () => {
             <Text component="h3" className="text-center text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-700 to-black">Invoice Manager 
     </Text>
             <Text component="h6" className="m-0 text-center text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-700 to-black">For a better and more convenient ERP experience</Text>
+<div className="flex items-center justify-center !mt-10 sm:m-0 mx-3 ">
+  <AppTabs/>
+  </div>
         </Container>
 {/* <AppAccess/> */}
 <GView/>
         {/* <Container className="">{toggledVal === "tbl" ? <TView /> : <GView />}</Container> */}
       </MantineProvider>
+
     </>
   );
 };

@@ -11,7 +11,7 @@ interface TabProps {
 
 const  tabs: TabProps[] = [
   { id: "g", label: "Grid", icon:(<BsFillGridFill/>)},
-  { id: "t", label: "Table",icon:(<BsTable/>) },
+  { id: "t", label: "Table",icon:(<BsTable size={23}/>) },
 ];
 
 export default function AppTabs() {
@@ -24,7 +24,7 @@ export default function AppTabs() {
           onClick={() => setActiveTab(tab.id)}
           className={`${
             activeTab === tab.id ? "" : "hover:text-white/60"
-          } relative px-3 py-1.5 text-sm font-medium text-white outline-sky-400 transition focus-visible:outline-2 flex items-center justify-center`}
+          } relative px-3 py-1.5 text-lg sm:text-2xl font-medium text-white outline-sky-400 focus-visible:outline-2 rounded flex items-center justify-center h-20 w-36 sm:h-48 sm:w-48 duration-200 transition hover:text-white hover:bg-white/5 `}
           style={{
             WebkitTapHighlightColor: "transparent",
           }}
@@ -32,7 +32,7 @@ export default function AppTabs() {
           {activeTab === tab.id && (
             <motion.span
               layoutId="bubble"
-              className="absolute inset-0 z-10 bg-white bg-opacity-10"
+              className="absolute inset-0 -z-10 bg-white/10"
               style={{ borderRadius: 5 }}
               transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
             />
