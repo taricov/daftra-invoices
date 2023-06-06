@@ -13,10 +13,11 @@ interface invProps {
   amount: string;
   currency: string;
   paymentStatus: string;
+  salesman: string;
 
 }
 
-const invs: invProps = [
+const invs: invProps[] = [
   {
       id: "22",
       status: "draft",
@@ -24,7 +25,8 @@ const invs: invProps = [
       createdAt: "21/03/2023",
       clientName: "Hussain Hussain",
       amount: "400",
-      currancy: "SAR",
+      currency: "SAR",
+      salesman: "Samir Ahmed",
   
   }
 ]
