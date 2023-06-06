@@ -24,11 +24,11 @@ const Home: NextPage = () => {
   return (
     <>
       <MantineProvider>
-        <div className="p-1">
+        <div className="p-1 shadow fixed top-0 z-50 w-full">
    <Navbar/>
         </div>
 
-        <Container className="my-10 text-center bg-violet-200/10 rounded-lg py-14">
+        <Container className="mt-10 !mb-5 mx-5 md:mx-auto text-center bg-violet-200/10 rounded-lg py-14">
         <Badge className="bg-gradient-to-r from-violet-900/60 to-black/50 via-slate-300 text-center text-transparent via- bg-clip-text relative before:content-[''] before:absolute before:top-0 before:left-0 before:rounded-full py-1 px-4 before:bg-indigo-900 before:bg-opacity-10 before:w-full before:h-full">
           Free and Open-Source 
           </Badge>
@@ -40,6 +40,7 @@ const Home: NextPage = () => {
   <AppTabs/>
   </div>
         </Container>
+        
 {/* <AppAccess/> */}
 <GView/>
         {/* <Container className="">{toggledVal === "tbl" ? <TView /> : <GView />}</Container> */}

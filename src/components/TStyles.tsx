@@ -26,7 +26,7 @@ export default function TStyles() {
 const [checked, setChecked] = useState<any>()
 useEffect(() => {
     // setChecked((Object.keys(TstylingOptions).map(x => console.log(x))))
-    console.log(checked)
+    // console.log(checked)
 },[])
   return (
     <>

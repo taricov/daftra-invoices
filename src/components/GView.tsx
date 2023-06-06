@@ -5,6 +5,30 @@ import { Drawer, Group, Button } from '@mantine/core';
 
 import AppCard from "./AppCard";
 
+interface invProps {
+  id: string;
+  status: string;
+  createdAt: string;
+  clientName: string;
+  amount: string;
+  currency: string;
+  paymentStatus: string;
+
+}
+
+const invs: invProps = [
+  {
+      id: "22",
+      status: "draft",
+      paymentStatus: "paid",
+      createdAt: "21/03/2023",
+      clientName: "Hussain Hussain",
+      amount: "400",
+      currancy: "SAR",
+  
+  }
+]
+
 export default function GView() {
   const [opened, { open, close }] = useDisclosure(false);
 
@@ -14,21 +38,6 @@ export default function GView() {
   const [spanning, setSpanning] = useState<number>(4);
   const [isGrow, setGrow] = useState(false);
 
-  const invs = [
-    { id: 1, label: "label1" },
-    { id: 2, label: "label1" },
-    { id: 3, label: "label1" },
-    { id: 4, label: "label1" },
-    { id: 5, label: "label1" },
-    { id: 6, label: "label1" },
-    { id: 6, label: "label1" },
-    { id: 7, label: "label1" },
-    { id: 8, label: "label1" },
-    { id: 1, label: "label1" },
-    { id: 1, label: "label1" },
-    { id: 1, label: "label1" },
-    { id: 1, label: "label1" }
-  ];
   return (
     <>
      <Drawer classNames={{body: "app-grad"}} title="Change grid styles" position="bottom" size={"200px"} opened={opened} onClose={close} withCloseButton={false}>
@@ -63,20 +72,27 @@ export default function GView() {
       </Box>
       </Drawer>
 
-      <Group position="center">
-        <Button onClick={open}>Open Drawer</Button>
-      </Group>
+      <Container className="overflow-hidden mb-10 p-0 mx-5 md:mx-auto text-center bg-violet-200/10 rounded-lg">
+<div className="flex items-center justify-center py-5">
+filters goes here!!! 
+      </div>
+<div className="flex w-full">
+
+        <Button classNames={{label: "!p-0"}} className="rounded-none rounded-tr-md w-full md:w-fit px-1 py-1 h-fit inline-block duration-200 transition hover:bg-white/100 relative text-[10px] font-medium text-violet-800 bg-white/80 outline-sky-400 focus-visible:outline-2  text-center" onClick={open}>Adjust the layout</Button>
+</div>
+        </Container>
+
       
 
       <Container>
         <Grid grow={isGrow} gutter={gutter}>
-          {invs.map((inv) => (
+          {Array(20).fill(invs).map((inv) => (
             <Grid.Col
               className={`p-[${padding}px]`}
               key={Math.random()*1000}
               span={spanning}
             >
-              <AppCard p={padding}/>
+<AppCard {...inv}/>
               {/* <div className=" bg-blue-300">{inv.id}</div> */}
             </Grid.Col>
           ))}

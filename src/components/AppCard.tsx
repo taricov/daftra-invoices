@@ -4,14 +4,15 @@ import { fetchInvoices, invQuery } from '@/utils/data';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
 
-const StatusColors = {
+const paymentsStatusColors = {
     paid: "bg-green-500",
     unpaid: "bg-red-500",
     "partially-paid": "bg-orange-500",
 }
-export default function AppCard({...props}) {
-    // const [inv, setInv] = useState<any>(null)
 
+export default function AppCard(props) {
+    // const [inv, setInv] = useState<any>(null)
+console.log(props['0'].id)
     const invQuery = useQuery({
         queryKey: ['invoices'],
         queryFn: fetchInvoices
@@ -23,7 +24,7 @@ export default function AppCard({...props}) {
           error,
         } = invQuery
 useEffect(() => {
-      console.log(data)
+    //   console.log(data)
 
     },[])
     //   console.log(data)
@@ -33,15 +34,16 @@ useEffect(() => {
         <>
         		{/* <div className="text-gray-600 my-3 text-center"><i className="fas fa-ellipsis-v"></i></div> */}
                 {/* ${StatusColors[inv[]]} */}
-<div className={`bg-white shadow-xl rounded-lg overflow-hidden ${'pad'}`}>
-    <div className={` bg-cover bg-center h-16 p-4 flex justify-end items-center`}>
-        <p className="uppercase tracking-widest text-sm text-white bg-black py-1 px-2 rounded opacity-75 shadow-lg">DFW <span className="tracking-normal"></span> SEA</p>
+<div className={`bg-white/80 shadow-xl rounded-lg overflow-hidden ${'pad'}`}>
+    <div className={`z-10 relative bg-cover bg-center h-16 p-4 flex justify-end items-center ${paymentsStatusColors[props["0"].paymentStatus]}`}>
+        <p className="uppercase text-sm text-white font-bold bg-black/50 py-1 px-2 rounded opacity-75 shadow-md">{props["0"].paymentStatus}</p>
+        {/* <p className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/4 uppercase text-6xl tracking-widest text-white/20 font-bold">{props["0"].paymentStatus}</p> */}
     </div>
 
-<div className="px-4 pb-3 pt-4 border-b border-gray-300 bg-gray-100 flex items-center justify-between">
+<div className="z-50 px-4 pb-3 pt-4 border-b border-gray-300 bg-gray-100 flex items-center justify-between">
 <div className="flex items-center space-x-4 ">
 <div className="rounded-full w-4 h-4 border border-purple-500"></div>
-<div className="text-md font-bold">Investors Meeting</div>
+<div className="text-md font-bold"></div>
 </div>
 <div className="flex items-center space-x-4">
 <div className="cursor-pointer">
