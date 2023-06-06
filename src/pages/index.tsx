@@ -28,7 +28,7 @@ const Home: NextPage = () => {
    <Navbar/>
         </div>
 
-        <Container className="md:mt-12 mt-32 !mb-5 mx-5 md:mx-auto text-center bg-violet-200/10 rounded-lg py-14">
+        <Container className="md:mt-[4rem] mt-32 !mb-5 mx-5 md:mx-auto text-center bg-violet-200/10 rounded-lg py-14">
         <Badge className="bg-gradient-to-r from-violet-900/60 to-black/50 via-slate-300 text-center text-transparent via- bg-clip-text relative before:content-[''] before:absolute before:top-0 before:left-0 before:rounded-full py-1 px-4 before:bg-indigo-900 before:bg-opacity-10 before:w-full before:h-full">
           Free and Open-Source 
           </Badge>

@@ -80,7 +80,7 @@ filters goes here!!!
       </div>
 <div className="flex w-full">
 
-        <Button classNames={{label: "!p-0"}} className="rounded-none rounded-tr-md w-full md:w-fit px-1 py-1 h-fit inline-block duration-200 transition hover:bg-white/100 relative text-[10px] font-medium text-violet-800 bg-white/80 outline-sky-400 focus-visible:outline-2  text-center" onClick={open}>Adjust the layout</Button>
+        <Button classNames={{label: "!p-0"}} className="rounded-none rounded-tr-md w-full md:w-fit px-1 py-1 h-fit inline-block duration-200 transition hover:bg-green-500/90 trasform hover:scale-105 relative text-[10px] font-medium text-violet-900 bg-green-500/80 outline-sky-400 focus-visible:outline-2  text-center" onClick={open}>Adjust the layout</Button>
 </div>
         </Container>
 

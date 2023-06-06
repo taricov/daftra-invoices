@@ -24,7 +24,7 @@ export default function AppTabs() {
           onClick={() => setActiveTab(tab.id)}
           className={`${
             activeTab === tab.id ? "" : "hover:text-white/60"
-          } relative px-3 py-1.5 text-lg sm:text-2xl font-medium text-white outline-sky-400 focus-visible:outline-2 rounded flex items-center justify-center h-20 w-36 sm:h-48 sm:w-48 duration-200 transition hover:text-white hover:bg-white/5 `}
+          } relative px-3 py-1.5 text-lg sm:text-2xl font-medium text-white outline-sky-400 focus-visible:outline-2 rounded flex items-center justify-center h-20 w-36 sm:h-48 sm:w-48 duration-200 transition hover:text-white hover:bg-white/51 `}
           style={{
             WebkitTapHighlightColor: "transparent",
           }}
