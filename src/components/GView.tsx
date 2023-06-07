@@ -53,35 +53,44 @@ export default function GView() {
 
   return (
     <>
-     <Drawer classNames={{body: "app-grad"}} title="Change grid styles" position="bottom" size={"200px"} opened={opened} onClose={close} withCloseButton={false}>
-     <Box maw={400} mx="auto" className="my-10">
-        <Text mt="md" size="sm">
-          Gutter: <b>{gutter}</b>
+     <Drawer classNames={{title: "text-white  font-bold mb-3  px-6 py-4 bg-white/10 w-full text-center", body: "app-grad", header: "app-grad p-0"}} title="Change grid styles" position="bottom" size={"200px"} opened={opened} onClose={close} withCloseButton={false} className="p-0 ">
+     <Box maw={400} mx="auto" className="pt-1 space-y-4">
+
+     <Box className="relative flex items-center justify-between">
+        <Text size="sm" className="m-0 text-white">
+        <b>{isGrow ? "Stretched" : "Compact"}</b>
+        </Text>
+        <Switch  className="" checked={isGrow} onChange={() => setGrow(!isGrow)} />
+      </Box>
+
+     <Box maw={400} mx="auto" className="flex-col items-center justify-center">
+        <Text size="sm" className="m-0 text-white">
+<b>{gutter}</b>
         </Text>
         <Slider
-          labelAlwaysOn
+        className="after:content-['Gutter'] after:absolute after:-right-10 after:-top-3 transform after:-translate-x-1/2 after:-translate-y-1/2 after:text-3xl after:font-semibold after:text-white/10"
+          labelAlwaysOn={false}
           value={gutter}
           onChange={setGutter}
-          // onChangeEnd={setEndValue}
         />
-        <Text mt={5} size="sm">
-          Grow is: <b>{isGrow ? "t" : "f"}</b>
-        </Text>
-        <Switch checked={isGrow} onChange={() => setGrow(!isGrow)} />
-        <Text mt="md" size="sm">
-          Spanning <b>{spanning}</b>
+        </Box>
+        <Box maw={400} mx="auto" className="flex-col items-center justify-center">
+        <Text size="sm" className="m-0 text-white">
+<b>{spanning}</b>
         </Text>
         <Slider
-          labelAlwaysOn
-          value={spanning}
-          onChange={setSpanning}
-          // onChangeEnd={setEndValue}
-          max={12}
+        className="after:content-['Spanning'] after:absolute after:-right-14 after:-top-3 transform after:-translate-x-1/2 after:-translate-y-1/2 after:text-3xl after:font-semibold after:text-white/10"
+        labelAlwaysOn={false}
+        value={spanning}
+        onChange={setSpanning}
+        max={12}
         />
-        <Text mt="md" size="sm">
+        </Box>
+
+        {/* <Text mt="md" size="sm">
           Padding: <b>{padding}</b>
         </Text>
-        <Slider labelAlwaysOn value={padding} onChange={setPadding} max={20} />
+        <Slider labelAlwaysOn value={padding} onChange={setPadding} max={20} /> */}
       </Box>
       </Drawer>
 
