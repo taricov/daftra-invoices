@@ -7,27 +7,38 @@ import AppCard from "./AppCard";
 
 interface invProps {
   id: string;
+  code: string;
   status: string;
   createdAt: string;
+  dueDate: string;
   clientName: string;
   amount: string;
+  clientStatus: string;
   currency: string;
   paymentStatus: string;
   salesman: string;
+  totalDiscount: string;
+  totalTax: string;
+  items: string[];
 
 }
 
 const invs: invProps[] = [
   {
       id: "22",
+      code: "#3322",
+      clientStatus: "Fraud",
       status: "draft",
-      paymentStatus: "paid",
+      paymentStatus: "unpaid",
       createdAt: "21/03/2023",
+      dueDate: "21/04/2023",
       clientName: "Hussain Hussain",
       amount: "400",
+      items: ["2", "2","@"],
+      totalDiscount: "100",
+      totalTax: "30",
       currency: "SAR",
       salesman: "Samir Ahmed",
-  
   }
 ]
 
