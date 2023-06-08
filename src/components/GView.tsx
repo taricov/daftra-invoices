@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 import { Box, Container, Grid, Slider, Switch, Text } from "@mantine/core";
 import { useState } from "react";
 import { useDisclosure } from '@mantine/hooks';
@@ -5,44 +8,44 @@ import { Drawer, Group, Button } from '@mantine/core';
 
 import AppCard from "./AppCard";
 
-interface invProps {
-  id: string;
-  code: string;
-  status: string;
-  createdAt: string;
-  dueDate: string;
-  clientName: string;
-  amount: string;
-  clientStatus: string;
-  currency: string;
-  paymentStatus: string;
-  salesman: string;
-  totalDiscount: string;
-  totalTax: string;
-  items: string[];
+// interface invProps {
+//   id: string;
+//   code: string;
+//   status: string;
+//   createdAt: string;
+//   dueDate: string;
+//   clientName: string;
+//   amount: string;
+//   clientStatus: string;
+//   currency: string;
+//   paymentStatus: string;
+//   salesman: string;
+//   totalDiscount: string;
+//   totalTax: string;
+//   items: string[];
 
-}
+// }
 
-const invs: invProps[] = [
-  {
-      id: "22",
-      code: "#3322",
-      clientStatus: "Fraud",
-      status: "draft",
-      paymentStatus: "unpaid",
-      createdAt: "21/03/2023",
-      dueDate: "21/04/2023",
-      clientName: "Hussain Hussain",
-      amount: "400",
-      items: ["2", "2","@"],
-      totalDiscount: "100",
-      totalTax: "30",
-      currency: "SAR",
-      salesman: "Samir Ahmed",
-  }
-]
+// const invs: invProps[] = [
+//   {
+//       id: "22",
+//       code: "#3322",
+//       clientStatus: "Fraud",
+//       status: "draft",
+//       paymentStatus: "unpaid",
+//       createdAt: "21/03/2023",
+//       dueDate: "21/04/2023",
+//       clientName: "Hussain Hussain",
+//       amount: "400",
+//       items: ["2", "2","@"],
+//       totalDiscount: "100",
+//       totalTax: "30",
+//       currency: "SAR",
+//       salesman: "Samir Ahmed",
+//   }
+// ]
 
-export default function GView() {
+export default function GView(props:any) {
   const [opened, { open, close }] = useDisclosure(false);
 
   // const [endValue, setEndValue] = useState(50);
@@ -50,6 +53,8 @@ export default function GView() {
   const [padding, setPadding] = useState<number>(10);
   const [spanning, setSpanning] = useState<number>(4);
   const [isGrow, setGrow] = useState(false);
+
+// console.log(props)
 
   return (
     <>
@@ -94,7 +99,7 @@ export default function GView() {
       </Box>
       </Drawer>
 
-      <Container className="overflow-hidden mb-10 p-0 mx-5 md:mx-auto text-center bg-violet-200/10 rounded-lg">
+      <Container className="md:mx-3 lg:mx-auto overflow-hidden mb-10 p-0 mx-5 text-center bg-violet-200/10 rounded-lg">
 <div className="flex items-center justify-center py-5">
 filters goes here!!! 
       </div>
@@ -106,16 +111,15 @@ filters goes here!!!
 
       
 
-      <Container>
+      <Container className="md:mx-3 lg:mx-auto">
         <Grid grow={isGrow} gutter={gutter}>
-          {Array(20).fill(invs).map((inv) => (
+          {props.data.map((inv:any) => (
             <Grid.Col
               className={`p-[${padding}px]`}
               key={Math.random()*1000}
               span={spanning}
             >
-<AppCard {...inv}/>
-              {/* <div className=" bg-blue-300">{inv.id}</div> */}
+<AppCard inv={inv}/>
             </Grid.Col>
           ))}
         </Grid>

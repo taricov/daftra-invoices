@@ -5,8 +5,13 @@ export type TypeTStyles<T extends string> = {
 //   export interface booleansMap0<T> {
 //     T: boolean;
 //   }
-  export type booleanMap = Record<string, boolean>
+  export type TypeBooleanMap = Record<string, boolean>
+  export type TypeUnknownMap = Record<string, unknown>
 
 //   interface booleanMap {
 //     [K: string]: boolean;
 //   }
+
+interface HttpResponse<T> extends Response {
+  parsedBody?: T;
+}
