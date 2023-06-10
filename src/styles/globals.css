@@ -8,7 +8,10 @@ body{
 }
 
 .app-btn{
-  @apply text-white !bg-violet-800 !bg-opacity-50 hover:!bg-opacity-30 transition-all duration-300 font-medium rounded
+  @apply text-white bg-violet-800/50 hover:bg-opacity-30 transition-all duration-300 font-medium rounded
+}
+.app-btn-connect{
+  @apply !text-white !bg-violet-800/50 hover:!bg-violet-800/30 !transition-all !duration-300 !font-medium !rounded
 }
 .app-btn-light{
   @apply text-white !bg-violet-800 !bg-opacity-0 hover:!bg-opacity-30 transition-all duration-300 font-medium rounded

@@ -9,7 +9,7 @@ import { BsFillGridFill, BsTable } from "react-icons/bs";
 import { useToggle } from "@mantine/hooks";
 import TView from "@/components/TView";
 import GView from "@/components/GView";
-// import AppAccess from "@/components/AppAccess";
+import AppAccess from "@/components/AppAccess";
 import AppTabs from "@/components/AppTabs";
 import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
@@ -46,7 +46,7 @@ const Home: NextPage = ({data}: InferGetStaticPropsType<typeof getStaticProps>) 
   </div>
         </Container>
         
-{/* <AppAccess/> */}
+
 <GView data={data}/>
         {/* <Container className="">{toggledVal === "tbl" ? <TView /> : <GView />}</Container> */}
       </MantineProvider>
