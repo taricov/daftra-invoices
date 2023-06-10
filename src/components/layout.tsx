@@ -5,7 +5,9 @@ export default function Layout({children}:{children :ReactElement}){
 
     return (
         <>
-        <Navbar/>
+     <div className="p-1 shadow fixed top-0 z-50 w-full backdrop-blur">
+   <Navbar/>
+   </div>
         {children}
         
         </>
