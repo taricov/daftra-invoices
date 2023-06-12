@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body{
-  @apply bg-gradient-to-r from-violet-600 to-indigo-600 w-screen m-0;
+  @apply bg-gradient-to-r from-violet-600 to-indigo-600 w-screen h-screen m-0;
 
 }
 

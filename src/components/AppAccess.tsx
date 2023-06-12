@@ -1,6 +1,6 @@
 import { useDisclosure } from '@mantine/hooks';
 import { useForm } from '@mantine/form';
-import { Modal, Group, NumberInput, TextInput, Button, Box } from '@mantine/core';
+import { Modal, Group, NumberInput, TextInput, Button, Box, Transition } from '@mantine/core';
 
 
 export default function AppAccess() {
@@ -18,7 +18,10 @@ export default function AppAccess() {
 
   return (
     <>
-      <Modal opened={opened} onClose={close} title="Connect.." 
+
+      <Modal 
+
+      opened={opened} onClose={close} title="Connect.." 
       classNames={{root: "rounded", body: "text-white app-grad", header: "!text-white app-grad"}}
       className="text-white !bg-violet-800 !bg-opacity-0 hover:!bg-opacity-30 transition-all duration-300 font-medium rounded">
 

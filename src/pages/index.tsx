@@ -3,7 +3,6 @@ import { Badge, Container, Text } from "@mantine/core";
 import { type NextPage } from "next";
 import Link from "next/link";
 // import "./styles.css";
-// import { api } from "@/utils/api"
 
 const Home: NextPage = () => {
 // const Home: NextPage = ({data}: InferGetStaticPropsType<typeof getStaticProps>) => {
@@ -11,8 +10,6 @@ const Home: NextPage = () => {
 
   return (
     <>
-
-
 
 <Container className="md:mt-[4rem] md:mx-3 lg:mx-auto mt-32 !mb-5 mx-5 text-center bg-violet-200/10 rounded-lg py-14">
         <Badge className="bg-gradient-to-r from-violet-900/60 to-black/50 via-slate-300 text-center text-transparent via- bg-clip-text relative before:content-[''] before:absolute before:top-0 before:left-0 before:rounded-full py-1 px-4 before:bg-indigo-900 before:bg-opacity-10 before:w-full before:h-full">

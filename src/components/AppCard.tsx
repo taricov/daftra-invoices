@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable react-hooks/rules-of-hooks */
@@ -6,7 +7,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-inferrable-types */
-import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -17,10 +17,10 @@ const paymentsStatusColors:any = {
     "partially-paid": "bg-orange-500",
 }
 
-export default function AppCard({...data}:{data:any}) {
+export default function AppCard({...allInvs}:{allInvs:any}) {
     const [d, setData] = useState<any>(null)
     useEffect(()=>{
-        setData(data.inv)
+        setData(allInvs)
     console.log(d)}, [d]);
     // const [inv, setInv] = useState<any>(null)
 // console.log(d['0'].id)
@@ -48,7 +48,7 @@ export default function AppCard({...data}:{data:any}) {
 //  d?.map((inv:any)=>
 (
 
-<div key={data.id} className={`bg-white/80 shadow-xl rounded-lg overflow-hidden ${'pad'}`}>
+<div key={allInvs.id} className={`bg-white/80 shadow-xl rounded-lg overflow-hidden ${'pad'}`}>
     <div className={`relative bg-cover bg-center h-3 flex justify-end items-center ${paymentsStatusColors[d.payment_status === 2 ? "paid" : d.payment_status === 1 ? "unpaid" : "partially paid"]}`}>
     </div>
 
