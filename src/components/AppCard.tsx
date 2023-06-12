@@ -17,11 +17,11 @@ const paymentsStatusColors:any = {
     "partially-paid": "bg-orange-500",
 }
 
-export default function AppCard({...allInvs}:{allInvs:any}) {
-    const [d, setData] = useState<any>(null)
-    useEffect(()=>{
-        setData(allInvs)
-    console.log(d)}, [d]);
+export default function AppCard({...data}:any) {
+    // const [d, setData] = useState<any>(null)
+    console.log(data);
+    // useEffect(()=>{
+        // setData(allInvs)
     // const [inv, setInv] = useState<any>(null)
 // console.log(d['0'].id)
 //     const invQuery = useQuery({
@@ -43,7 +43,7 @@ export default function AppCard({...allInvs}:{allInvs:any}) {
     // const pad:string = `p-[${d.p}px]` 
     return (
         <>
-{!d && "loading...."}
+{/* {!d && "loading...."}
 {d &&
 //  d?.map((inv:any)=>
 (
@@ -132,7 +132,7 @@ export default function AppCard({...allInvs}:{allInvs:any}) {
     </div>
    
 </div>
-)}
+)} */}
 
 {/* <div className="text-gray-600 my-3 text-center"><i className="fas fa-ellipsis-v"></i></div>
 <div className="text-xs uppercase text-gray-400 tracking-wider text-center leading-none">EST Flight Time: <span className="font-bold text-sm">2 hr 14 min</span></div>
