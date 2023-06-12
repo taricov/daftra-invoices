@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { useState } from "react";
 import { BsFillGridFill, BsTable } from "react-icons/bs";
 
@@ -7,11 +8,12 @@ interface TabProps {
     id:string;
      label:string;
      icon:any;
+     url:string;
     }
 
 const  tabs: TabProps[] = [
-  { id: "g", label: "Grid", icon:(<BsFillGridFill/>)},
-  { id: "t", label: "Table",icon:(<BsTable size={23}/>) },
+  { id: "g", label: "Grid", icon:(<BsFillGridFill/>), url: "/grid-view"},
+  { id: "t", label: "Table",icon:(<BsTable size={23}/>), url: "/table-view" },
 ];
 
 export default function AppTabs() {
@@ -19,7 +21,8 @@ export default function AppTabs() {
   return (
     <div className="flex space-x-1">
       {tabs.map((tab) => (
-        <button
+        <Link
+        href={tab.url}
           key={tab.id}
           onClick={() => setActiveTab(tab.id)}
           className={`${
@@ -44,7 +47,7 @@ export default function AppTabs() {
           <div className="mr-1">
           {tab.label}
           </div>
-        </button>
+        </Link>
       ))}
     </div>
   );
