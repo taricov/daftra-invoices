@@ -25,3 +25,10 @@ body{
   text-shadow: 4px -6px 1px #000;
 
 }
+
+button[data-active='true']{
+@apply !bg-violet-300/80
+}
+button[data-disabled='true']{
+@apply pointer-events-none
+}

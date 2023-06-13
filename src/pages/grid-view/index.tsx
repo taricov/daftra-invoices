@@ -1,12 +1,13 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Box, Button, Container, Drawer, Grid, Pagination, Slider, Switch, Text } from "@mantine/core";
-import { useDisclosure } from '@mantine/hooks';
-import { useState } from "react";
+import { Box, Button, Container, Drawer, Grid, Group, NumberInput, NumberInputHandlers, Pagination, Slider, Switch, Text } from "@mantine/core";
+import { useDisclosure, usePagination } from '@mantine/hooks';
+import { useRef, useState } from "react";
 
 import AppCard from "@/components/AppCard";
 import type { GetStaticProps } from "next";
@@ -21,15 +22,23 @@ const paymentsStatusColors:any = {
 
 
 export default function GView({...props}:any) {
-// console.log(props.data)
-// const { data } = useQuery({queryKey:['invs'], queryFn:GetInvoices, initialData: invs}) 
+console.log(props)
+  const [ perPage, setPerPage] = useState<number>(props.per_page)
+  const [ totalInvs, setTotalInvs ] = useState<number>(props.total)
 
-// const data = invs.data as object[]
+  const [ totalPages, setTotalPages ] = useState<number>(totalInvs/perPage)
+  const [page, onChange] = useState(1);
+  // setTotalPages(props.results/)
+const gridPagination = usePagination({ total: totalPages, page, onChange });
+
   const [opened, { open, close }] = useDisclosure(false);
+
+const handlers = useRef<NumberInputHandlers>();
+
 
   // const [endValue, setEndValue] = useState(50);
   const [gutter, setGutter] = useState<number>(50);
-  const [padding, setPadding] = useState<number>(10);
+  // const [padding, setPadding] = useState<number>(10); p-[${padding}px] 
   const [spanning, setSpanning] = useState<number>(4);
   const [isGrow, setGrow] = useState(false);
 
@@ -86,9 +95,24 @@ export default function GView({...props}:any) {
 
 
       <Container className="md:mx-3 lg:mx-auto overflow-hidden mb-10 p-0 mx-5 text-center bg-violet-200/10 rounded-lg">
-<div className="flex items-center justify-center py-5">
-filters goes here!!! 
-      </div>
+<form className="w-full">
+  <Container className="flex items-start md:mx-3 lg:mx-auto  mb-10 p-0 mx-5 text-center w-full rounded-lg">
+
+<NumberInput
+hideControls
+label="Invoices Per Page"
+        value={perPage}
+        onChange={(val) => setPerPage(+val)}
+        handlersRef={handlers}
+        min={2}
+        step={2}
+      />
+</Container>
+      <div className="flex justify-end px-5">
+
+      <Button className="app-btn" onClick={()=>""}>Filter</Button>
+</div>
+</form>
 <div className="flex w-full">
 
         <Button classNames={{label: "!p-0"}} className="rounded-none rounded-tr-md w-full md:w-fit px-1 py-1 h-fit inline-block duration-200 transition hover:bg-green-500/90 trasform hover:scale-105 relative text-[10px] font-medium text-violet-900 bg-green-500/80 outline-sky-400 focus-visible:outline-2  text-center" onClick={open}>Adjust the layout</Button>
@@ -101,7 +125,7 @@ filters goes here!!!
         <Grid grow={isGrow} gutter={gutter}>
           {props.data.map((inv:any) => (
             <Grid.Col
-              className={`p-[${padding}px] min-h-max`}
+              className={`min-h-max`}
               key={Math.random()*1000}
               span={spanning}
             >
@@ -197,8 +221,17 @@ filters goes here!!!
         </Grid>
       </Container>
       <Container className="flex items-center justify-center md:mx-3 py-5 !my-10 lg:mx-auto overflow-hidden p-0 mx-5 text-center bg-violet-200/10 rounded-lg">
-{/* <div className="flex items-center justify-center py-5"> */}
-      <Pagination total={20} siblings={2} defaultValue={10} classNames={{dots:"text-white", control:"text-white !bg-violet-300/20 hover:!bg-violet-300/50 transition duration-400 border-none"}}/>
+      {/* <Pagination withEdges total={totalPages} siblings={2} defaultValue={1} classNames={{dots:"text-white", control:"text-white !bg-violet-300/20 hover:!bg-violet-300/50 transition duration-400 border-none"}}/> */}
+
+      <Pagination.Root total={totalPages} siblings={2} defaultValue={1} classNames={{dots:"text-white", control:"text-white !bg-violet-300/20 hover:!bg-violet-300/50 transition duration-400 border-none"}}>
+      <Group spacing={5} position="center">
+        <Pagination.First />
+        <Pagination.Previous />
+        <Pagination.Items />
+        <Pagination.Next />
+        <Pagination.Last />
+      </Group>
+    </Pagination.Root>
 
       </Container>
 
@@ -207,9 +240,10 @@ filters goes here!!!
 }
 
 
-export const getStaticProps: GetStaticProps<any> = async () => {
+export const getStaticProps: GetStaticProps<any> = async ({ params }) => {
+  // const { perPage } = params
   const apiKey = "24b476fdd8aa43091e0963ba01b98762155c9dd4"
-  const url = 'https://taricov.daftra.com/v2/api/entity/invoice/list/1?per_page=10'
+  const url = 'https://taricov.daftra.com/v2/api/entity/invoice/list/1?per_page=' 
   const headers:{"Content-Type": string, [key: string]: string} = {
       "Content-Type": "application/json",
       "apikey": apiKey
