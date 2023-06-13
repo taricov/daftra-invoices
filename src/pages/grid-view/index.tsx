@@ -30,8 +30,8 @@ const paymentsStatusColors:any = {
 
 export default function GView({...props}:any) {
 // console.log(props)
-  const [ perPage, setPerPage] = useState<number>(props.per_page)
-  const [ totalInvs, setTotalInvs ] = useState<number>(props.total)
+  const [ perPage, setPerPage] = useState<number>(props.invs.per_page)
+  const [ totalInvs, setTotalInvs ] = useState<number>(props.invs.total)
 
   const [ totalPages, setTotalPages ] = useState<number>(totalInvs/perPage)
   const [page, onChange] = useState(1);
@@ -53,15 +53,16 @@ interface Inv {
 [key: string]: unknown
 }
 
-const GetAllInvs = async(url:string, headers:{[key:string]:string}):Promise<unknown> =>{
-  const res = await fetch(url, {headers})
+const GetAllInvs = async(url:string, perPage:number, page:number, headers:{[key:string]:string}):Promise<unknown> =>{
+  const invURL = `${url}?per_page=${perPage}&page=${page}`;
+  const res = await fetch(invURL, {headers})
   const json = await res.json();
-  return json.data
+  return json.data as Inv[]
 }
 
 const fetchedData =  useQuery(
   ["invs"],
-  async ()=> await GetAllInvs(props.url, props.headers)
+  async ()=> await GetAllInvs(props.url,perPage, page, props.headers)
 )
 console.log("from fe", fetchedData.data)
   // const allInvStatus = () => {
@@ -269,7 +270,7 @@ label="Invoices Per Page"
 export const getStaticProps: GetStaticProps<any> = async ({ params }) => {
   // const { perPage } = params
   const apiKey = "24b476fdd8aa43091e0963ba01b98762155c9dd4"
-  const url = 'https://taricov.daftra.com/v2/api/entity/invoice/list/1?per_page=' 
+  const url = 'https://taricov.daftra.com/v2/api/entity/invoice/list/1' 
   const headers:{[key: string]: string} = {
       "Content-Type": "application/json",
       "apikey": apiKey
