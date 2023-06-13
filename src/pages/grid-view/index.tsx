@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/consistent-type-imports */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
@@ -13,6 +14,7 @@ import AppCard from "@/components/AppCard";
 import type { GetStaticProps } from "next";
 import Link from "next/link";
 import ViewsHero from "@/components/ViewsHero";
+import { useQuery } from "@tanstack/react-query";
 
 const paymentsStatusColors:any = {
   paid: "bg-green-500/80",
@@ -21,8 +23,13 @@ const paymentsStatusColors:any = {
 }
 
 
+//TODO pagination 
+//TODO filters 
+//TODO extract logic for payment status and inv status  
+
+
 export default function GView({...props}:any) {
-console.log(props)
+// console.log(props)
   const [ perPage, setPerPage] = useState<number>(props.per_page)
   const [ totalInvs, setTotalInvs ] = useState<number>(props.total)
 
@@ -42,10 +49,29 @@ const handlers = useRef<NumberInputHandlers>();
   const [spanning, setSpanning] = useState<number>(4);
   const [isGrow, setGrow] = useState(false);
 
+interface Inv {
+[key: string]: unknown
+}
+
+const GetAllInvs = async(url:string, headers:{[key:string]:string}):Promise<unknown> =>{
+  const res = await fetch(url, {headers})
+  const json = await res.json();
+  return json.data
+}
+
+const fetchedData =  useQuery(
+  ["invs"],
+  async ()=> await GetAllInvs(props.url, props.headers)
+)
+console.log("from fe", fetchedData.data)
+  // const allInvStatus = () => {
+
+  // }
+
   return (
     <>
     {/* {data.map(data =>console.log(JSON.stringify(data)))} */}
-     <Drawer classNames={{title: "text-white  font-bold mb-3  px-6 py-4 bg-white/10 w-full text-center", body: "app-grad", header: "app-grad p-0"}} title="Change grid styles" position="bottom" size={"200px"} opened={opened} onClose={close} withCloseButton={false} className="p-0 ">
+     <Drawer closeOnClickOutside classNames={{title: "text-white  font-bold mb-3  px-6 py-4 bg-white/10 w-full text-center", body: "app-grad", header: "app-grad p-0"}} title="Change grid styles" position="bottom" size={"200px"} opened={opened} onClose={close} withCloseButton={false} className="p-0 ">
      <Box maw={400} mx="auto" className="pt-1 space-y-4">
 
      <Box className="relative flex items-center justify-between">
@@ -123,7 +149,7 @@ label="Invoices Per Page"
 
       <Container className="md:mx-3 lg:mx-auto">
         <Grid grow={isGrow} gutter={gutter}>
-          {props.data.map((inv:any) => (
+          {props.invs.data.map((inv:any) => (
             <Grid.Col
               className={`min-h-max`}
               key={Math.random()*1000}
@@ -244,13 +270,13 @@ export const getStaticProps: GetStaticProps<any> = async ({ params }) => {
   // const { perPage } = params
   const apiKey = "24b476fdd8aa43091e0963ba01b98762155c9dd4"
   const url = 'https://taricov.daftra.com/v2/api/entity/invoice/list/1?per_page=' 
-  const headers:{"Content-Type": string, [key: string]: string} = {
+  const headers:{[key: string]: string} = {
       "Content-Type": "application/json",
       "apikey": apiKey
   }
     const res = await fetch(url, {headers});
     const invs  = await res.json()
     return {
-      props: invs
+      props: {apiKey: apiKey, invs: invs, url: url, headers: headers}
     }
   }
