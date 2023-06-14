@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/consistent-type-imports */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
@@ -8,13 +9,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Box, Button, Container, Drawer, Grid, Group, NumberInput, NumberInputHandlers, Pagination, Slider, Switch, Text } from "@mantine/core";
 import { useDisclosure, usePagination } from '@mantine/hooks';
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import AppCard from "@/components/AppCard";
 import type { GetStaticProps } from "next";
 import Link from "next/link";
 import ViewsHero from "@/components/ViewsHero";
 import { useQuery } from "@tanstack/react-query";
+import { GetAllInvs } from "@/utils/data";
 
 const paymentsStatusColors:any = {
   paid: "bg-green-500/80",
@@ -29,8 +31,26 @@ const paymentsStatusColors:any = {
 
 
 export default function GView({...props}:any) {
-// console.log(props)
-  const [ perPage, setPerPage] = useState<number>(props.invs.per_page)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const [allData, setData] = useState<any>(null)
+// console.log(allData)
+  const [ perPage, setPerPage] = useState<number>(props.invs.per_page ?? 10)
   const [ totalInvs, setTotalInvs ] = useState<number>(props.invs.total)
 
   const [ totalPages, setTotalPages ] = useState<number>(totalInvs/perPage)
@@ -49,25 +69,71 @@ const handlers = useRef<NumberInputHandlers>();
   const [spanning, setSpanning] = useState<number>(4);
   const [isGrow, setGrow] = useState(false);
 
-interface Inv {
-[key: string]: unknown
-}
+// interface Inv {
+// [key: string]: unknown
+// }
 
-const GetAllInvs = async(url:string, perPage:number, page:number, headers:{[key:string]:string}):Promise<unknown> =>{
-  const invURL = `${url}?per_page=${perPage}&page=${page}`;
-  const res = await fetch(invURL, {headers})
-  const json = await res.json();
-  return json.data as Inv[]
-}
 
-const fetchedData =  useQuery(
-  ["invs"],
-  async ()=> await GetAllInvs(props.url,perPage, page, props.headers)
-)
-console.log("from fe", fetchedData.data)
+// const queryData = async(props:any ) => { 
+
+// const { apiKey, url, headers } = await props
+
+  // const {data, isError, isLoading} =  useQuery(
+  //   ["invs"], async ()=> await GetAllInvs(props.url,perPage, page, props.headers)
+  // )
+    // async ()=>{
+    //   const invURL = `${url}?per_page=${perPage}&page=${page}`;
+    //   const res = await fetch(invURL, {headers})
+    //   const json = await res.json();
+    //   setData(json.data)
+    // }
+    
+  
+
+// }
+// console.log("from fe", fetchedData.data)
   // const allInvStatus = () => {
 
   // }
+
+  const filterInvs = () => {
+  //   // fetchedData
+  //   setData(data)
+    console.log("fiterInvs", data)
+  }
+
+//   useEffect(()=>{
+//     setData(data) 
+// },[])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const {data, isLoading, isError, error} = useQuery({
+  queryKey: ["inv-data", perPage, page],
+  queryFn: () => GetAllInvs(props.url, perPage, page, props.headers)
+})
+
+
+
+if(isLoading) return <div>Loading...</div>
+if(isError) return <div>Someting went wrong...!!! </div>
 
   return (
     <>
@@ -137,7 +203,7 @@ label="Invoices Per Page"
 </Container>
       <div className="flex justify-end px-5">
 
-      <Button className="app-btn" onClick={()=>""}>Filter</Button>
+      <Button className="app-btn" onClick={()=>filterInvs()}>Filter</Button>
 </div>
 </form>
 <div className="flex w-full">
@@ -150,7 +216,7 @@ label="Invoices Per Page"
 
       <Container className="md:mx-3 lg:mx-auto">
         <Grid grow={isGrow} gutter={gutter}>
-          {props.invs.data.map((inv:any) => (
+          {data.map((inv:any) => (
             <Grid.Col
               className={`min-h-max`}
               key={Math.random()*1000}
@@ -158,8 +224,8 @@ label="Invoices Per Page"
             >
 {/* <AppCard data={inv}/> */}
 
-
-<div key={inv.id} className={`bg-white/80 shadow-xl rounded-lg overflow-hidden ${'pad'} h-full`}>
+{/* Cards start from here */}
+<div key={inv?.id} data-g={inv.id+11} className={`bg-white/80 shadow-xl rounded-lg overflow-hidden h-full`}>
     <div className={`relative bg-cover bg-center h-3 flex justify-end items-center ${paymentsStatusColors[inv.payment_status === 2 ? "paid" : inv.payment_status === 1 ? "unpaid" : "partially paid"]}`}>
     </div>
 

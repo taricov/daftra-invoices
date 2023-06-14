@@ -15,3 +15,9 @@ export type TypeTStyles<T extends string> = {
 interface HttpResponse<T> extends Response {
   parsedBody?: T;
 }
+
+
+
+export interface Inv {
+  [key: string]: unknown
+  }
